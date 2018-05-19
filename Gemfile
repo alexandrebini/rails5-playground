@@ -6,6 +6,7 @@ ruby '2.5.1'
 gem 'coffee-rails', '~> 4.2'
 gem 'mini_magick', '~> 4.8'
 gem 'pg', '>= 0.18', '< 2.0'
+gem 'pry'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.0'
 gem 'redis', '~> 4.0'
@@ -30,10 +31,14 @@ group :development do
 end
 
 group :test do
+  gem 'capybara-screenshot', require: false
   gem 'cucumber-rails', require: false
+  gem 'cucumber-timecop', require: false
+  gem 'cucumis', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec_junit_formatter'
   gem 'shoulda-matchers'
+  gem 'timecop'
 end

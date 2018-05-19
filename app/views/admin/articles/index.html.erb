@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articles</h1>
+
+<table class='articles'>
+  <thead>
+    <tr>
+      <th>Created At</th>
+      <th>Published</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td class='created_at'><%= l(article.created_at, format: :short) %></td>
+        <td class='published'><%= t(article.published?) %></td>
+        <td class='title'><%= article.title %></td>
+        <td class='content'><%= truncate(article.content, length: 50) %></td>
+        <td>
+          <%= link_to 'Edit', [:edit, :admin, article] %>
+          <%= link_to 'Destroy', [:admin, article], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Article', %i[new admin article] %>
