@@ -45,20 +45,30 @@ jobs:
 
       # run tests!
       - run:
-          name: run tests
+          name: run rspec
           command: |
-            mkdir /tmp/test-results
+            mkdir ~/rspec
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
             bundle exec rspec --format progress \
                             --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
+                            --out ~/rspec/rspec.xml \
                             --format progress \
-                            $TEST_FILES
 
-      # collect reports
       - store_test_results:
-          path: /tmp/test-results
+          path: ~/rspec
       - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+          path: ~/rspec
+
+      - run:
+          name: run cucumber
+          command: |
+            mkdir -p ~/cucumber
+            bundle exec cucumber --format junit \
+                                 --out ~/cucumber \
+                                 $(circleci tests glob "features/**/*.feature" | circleci tests split --split-by=timings)
+          when: always
+      - store_test_results:
+          path: ~/cucumber
+      - store_artifacts:
+          path: ~/cucumber
