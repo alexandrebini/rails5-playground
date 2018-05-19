@@ -32,3 +32,4 @@ Feature: Managing articles
       | Content   |     |
     Then I should see "Title can't be blank"
     And I should see "Content can't be blank"
+    And I should see "Image can't be blank"

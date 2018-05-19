@@ -42,7 +42,7 @@ module Admin
     end
 
     def article_params
-      params.require(:article).permit(:content, :published, :title)
+      params.require(:article).permit(:content, :image, :published, :title)
       # params.fetch(:article, {})
     end
   end
