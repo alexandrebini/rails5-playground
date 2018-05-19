@@ -16,7 +16,6 @@ module Rails5Playground
   class Application < Rails::Application
     config.load_defaults 5.2
     config.generators.system_tests = nil
-
-    config.assets.precompile += %w[admin.js admin.css]
+    config.assets.precompile = %w[admin.js admin.css]
   end
 end
